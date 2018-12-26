@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleContent;
+use App\Model\Admin\Category;
 
 class CategoryController extends Controller
 {
@@ -21,8 +22,13 @@ class CategoryController extends Controller
         if ($search) {
             $article = $article->where('name', 'like', '%' . $search . '%');
         }
-        $list = $article->orderBy('id', 'desc')->paginate($request->input('limit'));
-
+        $list = $article->orderBy('id', 'desc')->paginate($request->input('limit'))->toArray();
+        if ($list['data']) {
+            $kv = (new Category())->kv();
+            foreach ($list['data'] as $k => $item) {
+                $list['data'][$k]['categoryName'] = isset($kv[$item['category_id']]) ? $kv[$item['category_id']] : '';
+            }
+        }
         return $this->apiSuccess($list);
     }
 
@@ -59,8 +65,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Api  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $article)
+    public function show(Article $article)
     {
+        $articleContentModel = new ArticleContent();
+        $articleContent = $articleContentModel->find($article->id);
+        $article->content =$articleContent;
         return $this->apiSuccess($article);
     }
 
@@ -86,8 +95,7 @@ class CategoryController extends Controller
         $article->status = (int)$request->input('status');
         $article->save();
 
-        $articleContent = new ArticleContent();
-        $articleContent->article_id = $article->id;
+        $articleContent = ArticleContent::find($article->id);
         $articleContent->content = (string)$request->input('content');
         $articleContent->save();
         return $this->apiSuccess($article);
