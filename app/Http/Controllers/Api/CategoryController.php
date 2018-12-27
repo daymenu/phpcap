@@ -46,7 +46,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Api  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $category)
+    public function show(Category $category)
     {
         return $this->apiSuccess($category);
     }
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         return $this->apiSuccess($category);
     }
 
-    public function kv(Role $category)
+    public function kv(Category $category)
     {
         return $this->apiSuccess($category->kv());
     }

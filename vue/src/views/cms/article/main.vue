@@ -5,6 +5,6 @@
 <script>
 
 export default {
-  name: 'AdminMain'
+  name: 'ArticleMain'
 }
 </script>

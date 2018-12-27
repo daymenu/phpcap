@@ -85,7 +85,7 @@ const defaultForm = {
 }
 
 export default {
-  name: 'AadminDetail',
+  name: 'AdminDetail',
   components: { },
   props: {
     isEdit: {

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const baseUrl = '/api/admin/category'
+const baseUrl = '/api/admin/article'
 
 export function getList(search) {
   return request({
@@ -17,26 +17,19 @@ export function show(id) {
   })
 }
 
-export function categoryKv(id) {
-  return request({
-    url: baseUrl + '/kv',
-    method: 'get'
-  })
-}
-
-export function store(user) {
+export function store(data) {
   return request({
     url: baseUrl,
     method: 'post',
-    data: user
+    data: data
   })
 }
 
-export function update(id, user) {
+export function update(id, data) {
   return request({
     url: baseUrl + '/' + id,
     method: 'put',
-    data: user
+    data: data
   })
 }
 

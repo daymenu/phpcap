@@ -17,13 +17,13 @@ const CmsRouter = {
   }, {
     path: 'article',
     component: () => import('@/views/cms/article/main'), // Parent router-view
-    name: 'cmsArticle',
+    name: '',
     meta: {
       title: '文章管理'
     },
     children: [{
       path: '',
-      component: () => import('@/views/auth/admin/list'), // Parent router-view
+      component: () => import('@/views/cms/article/list'), // Parent router-view
       name: 'cmsArticleList',
       meta: {
         title: '文章列表',
@@ -33,7 +33,7 @@ const CmsRouter = {
     },
     {
       path: 'edit/:id',
-      component: () => import('@/views/auth/admin/edit'), // Parent router-view
+      component: () => import('@/views/cms/article/edit'), // Parent router-view
       name: 'cmsArticleEdit',
       meta: {
         title: '文章编辑',
@@ -43,7 +43,7 @@ const CmsRouter = {
     },
     {
       path: 'add',
-      component: () => import('@/views/auth/admin/create'), // Parent router-view
+      component: () => import('@/views/cms/article/create'), // Parent router-view
       name: 'cmsArticleAdd',
       meta: {
         title: '文章添加',

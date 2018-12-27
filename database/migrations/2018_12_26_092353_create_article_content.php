@@ -13,7 +13,7 @@ class CreateArticleContent extends Migration
      */
     public function up()
     {
-        Schema::create('article_Contents', function (Blueprint $table) {
+        Schema::create('article_contents', function (Blueprint $table) {
             $table->primary('article_id');
             $table->integer('article_id')->default(0)->comment('文章ID');
             $table->longText('content')->default('')->comment('文章内容');

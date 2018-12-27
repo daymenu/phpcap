@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/category/kv', 'Api\CategoryController@kv')->name('category.kv');
         Route::apiResources(array(
             '/category' => 'Api\CategoryController',
+            '/article' => 'Api\ArticleController',
         ));
     });
 });

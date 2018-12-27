@@ -11,7 +11,7 @@ const AuthRouter = {
   children: [{
     path: 'admin',
     component: () => import('@/views/auth/admin/main'), // Parent router-view
-    name: 'authAdmin',
+    name: '',
     meta: {
       title: '人员管理'
     },

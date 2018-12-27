@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoryRequest;
-use App\Http\Controllers\Controller;
 use App\Models\ArticleContent;
-use App\Model\Admin\Category;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 
-class CategoryController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +20,14 @@ class CategoryController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            $article = $article->where('name', 'like', '%' . $search . '%');
+            $article = $article->where('title', 'like', '%' . $search . '%');
         }
         $list = $article->orderBy('id', 'desc')->paginate($request->input('limit'))->toArray();
         if ($list['data']) {
             $kv = (new Category())->kv();
             foreach ($list['data'] as $k => $item) {
                 $list['data'][$k]['categoryName'] = isset($kv[$item['category_id']]) ? $kv[$item['category_id']] : '';
+                $list['data'][$k]['publishd_time'] = $item['publishd_time'] ? date('Y-m-d H:i:s', $item['publishd_time']) : '';
             }
         }
         return $this->apiSuccess($list);
@@ -38,7 +39,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request, Article $article)
+    public function store(ArticleRequest $request, Article $article)
     {
         $validated = $request->validated();
         $article->title = (string)$request->input('title');
@@ -69,7 +70,8 @@ class CategoryController extends Controller
     {
         $articleContentModel = new ArticleContent();
         $articleContent = $articleContentModel->find($article->id);
-        $article->content =$articleContent;
+        $article->content = $articleContent->content;
+        $article->publishd_time = $article->publishd_time ? date('Y-m-d H:i:s', $article->publishd_time) : '';
         return $this->apiSuccess($article);
     }
 
@@ -80,7 +82,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Api  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $validated = $request->validated();
         $validated = $request->validated();
