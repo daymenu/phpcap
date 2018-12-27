@@ -18,5 +18,10 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "cross-env": "^5.2.0",
+        "laravel-mix": "^4.0.12",
+        "webpack": "^4.28.2"
     }
 }

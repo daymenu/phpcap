@@ -12,7 +12,7 @@
  */
 
 Route::group([], function () {
-    Route::get('/', function () {
-        echo "hello world";
-    });
+    Route::get('/', 'Web\IndexController@index');
+    Route::get('/list/{id}', 'Web\ListController@index');
+    Route::get('/detail/{id}', 'Web\DetailController@index');
 });
