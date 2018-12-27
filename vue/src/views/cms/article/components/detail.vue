@@ -42,10 +42,10 @@
             <el-form-item label="类别" prop="category_id" style="margin-left: 41px;">
               <el-select v-model="postForm.category_id" placeholder="请选择文章类别">
                 <el-option
-                  v-for="(name, id) in categorys"
-                  :key="id"
-                  :label="name"
-                  :value="id"/>
+                  v-for="item in categorys"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"/>
               </el-select>
             </el-form-item>
           </el-col>

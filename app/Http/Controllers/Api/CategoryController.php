@@ -81,6 +81,7 @@ class CategoryController extends Controller
 
     public function kv(Category $category)
     {
-        return $this->apiSuccess($category->kv());
+        $kv = $category->select('id', 'name')->get();
+        return $this->apiSuccess($kv);
     }
 }
