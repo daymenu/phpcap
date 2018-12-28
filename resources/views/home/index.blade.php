@@ -13,5 +13,10 @@
         <li><a href="{{url('list/' . $category->id)}}">{{$category->name}}</a></li>
         @endforeach
     </ul>
+    <div id="app">
+        <example-component></example-component>
+        <el-button>你好</el-button>
+    </div>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
