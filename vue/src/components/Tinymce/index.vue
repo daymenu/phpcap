@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import tinymce from 'tinymce'
+console.log(tinymce)
 import editorImage from './components/editorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
