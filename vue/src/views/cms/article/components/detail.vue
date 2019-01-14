@@ -51,7 +51,7 @@
           </el-col>
         </el-row>
         <div class="editor-container">
-          <SimplemdeMd ref="editor" v-model="postForm.content" type="textarea"/>
+          <Tinymce ref="editor" v-model="postForm.content" type="textarea"/>
         </div>
       </div>
     </el-form>
@@ -64,6 +64,7 @@ import { store, show, update } from '@/api/cms/article'
 import { categoryKv } from '@/api/cms/category'
 import MDinput from '@/components/MDinput'
 import SimplemdeMd from '@/components/MarkdownEditor'
+import Tinymce from '@/components/Tinymce'
 import Sticky from '@/components/Sticky' // 粘性header组件
 
 const defaultForm = {
@@ -78,7 +79,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { MDinput, SimplemdeMd, Sticky },
+  components: { MDinput, SimplemdeMd, Sticky, Tinymce },
   props: {
     isEdit: {
       type: Boolean,

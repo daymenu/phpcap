@@ -25,6 +25,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => ['auth:api', 'check.auth']], function () {
         Route::post('/logout', 'Api\LoginController@logout')->name('admin.logout');
 
+        // 公共接口
+        Route::post('/upload', 'Api\UploadController@index')->name('upload.upload');
+
         Route::get('/user/info', 'Api\UserController@info')->name('user.info');
         Route::get('/user/menuIds', 'Api\UserController@menuIds')->name('user.menuIds');
         Route::get('/menu/tree', 'Api\MenuController@tree')->name('menu.tree');
@@ -35,6 +38,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/role/kv', 'Api\RoleController@kv')->name('role.kv');
         Route::get('/safe/login', 'Api\LoginRecordController@index')->name('loginrecord.index');
         Route::get('/safe/operation', 'Api\OperationController@index')->name('operation.index');
+
 
         Route::apiResources(array(
             '/user' => 'Api\UserController',
