@@ -31,3 +31,10 @@ export function removeToken() {
   Cookies.remove(expiresIn)
   return Cookies.remove(TokenKey)
 }
+
+export function authObj() {
+  const token = getPassport()
+  return {
+    Authorization: token.tokenType + ' ' + token.accessToken
+  }
+}

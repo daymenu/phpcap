@@ -1,6 +1,9 @@
 <template>
   <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
     <textarea :id="tinymceId" class="tinymce-textarea"/>
+    <div class="editor-file-btn-container">
+      <editorFile color="#1890ff" class="editor-upload-file-btn" @successFileCBK="fileSuccess"/>
+    </div>
     <div class="editor-custom-btn-container">
       <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
     </div>
@@ -9,13 +12,14 @@
 
 <script>
 import editorImage from './components/editorImage'
+import editorFile from './components/editorFile'
 import plugins from './plugins'
 import toolbar from './toolbar'
 import { upload } from '@/api/utils/upload'
 
 export default {
   name: 'Tinymce',
-  components: { editorImage },
+  components: { editorImage, editorFile },
   props: {
     id: {
       type: String,
@@ -94,6 +98,7 @@ export default {
         height: this.height,
         body_class: 'panel-body ',
         object_resizing: false,
+        relative_urls: false,
         toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
         menubar: this.menubar,
         plugins: plugins,
@@ -103,8 +108,9 @@ export default {
         code_dialog_width: 1000,
         advlist_bullet_styles: 'square',
         advlist_number_styles: 'default',
-        imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
         default_link_target: '_blank',
+        fontsize_formats: '8px 10px 12px 14px 18px 24px 36px',
+        font_formats: 'Arial=arial,helvetica,sans-serif;微软雅黑="微软雅黑";宋体="宋体";黑体="黑体";仿宋="仿宋";楷体="楷体";隶书="隶书";幼圆="幼圆";',
         link_title: false,
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         init_instance_callback: editor => {
@@ -149,7 +155,19 @@ export default {
     imageSuccessCBK(arr) {
       const _this = this
       arr.forEach(v => {
-        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
+        const editor = window.tinymce.get(_this.tinymceId)
+        editor.insertContent(editor.dom.createHTML('img', {
+          src: v.url,
+          alt: v.name
+        }))
+      })
+    },
+    fileSuccess(arr) {
+      const _this = this
+      console.log(arr)
+      arr.forEach(v => {
+        const editor = window.tinymce.get(_this.tinymceId)
+        editor.insertContent(editor.dom.createHTML('a', { href: v.url }, editor.dom.encode(v.name)))
       })
     }
   }
@@ -178,6 +196,18 @@ export default {
   position: fixed;
 }
 .editor-upload-btn {
+  display: inline-block;
+}
+.editor-file-btn-container {
+  position: absolute;
+  right: 110px;
+  top: 4px;
+}
+.fullscreen .editor-file-btn-container {
+  z-index: 10000;
+  position: fixed;
+}
+.editor-upload-file-btn {
   display: inline-block;
 }
 </style>

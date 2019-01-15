@@ -190,7 +190,7 @@ export default {
     }
     .editor-container {
       min-height: 500px;
-      margin: 0 0 30px 82px;
+      margin: 0 0 30px 42px;
       .editor-upload-btn-container {
         text-align: right;
         margin-right: 10px;
