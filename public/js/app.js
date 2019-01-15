@@ -95,7 +95,8 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-module.exports = __webpack_require__(11);
+__webpack_require__(11);
+module.exports = __webpack_require__(12);
 
 
 /***/ }),
@@ -11907,6 +11908,12 @@ if (false) {
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
