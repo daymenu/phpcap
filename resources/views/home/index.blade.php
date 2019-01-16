@@ -15,9 +15,13 @@
 @endpush
 
 @section('content')
-<ul>
-    @foreach ($categorys as $category)
-    <li><a href="{{url('list/' . $category->id)}}">{{$category->name}}</a></li>
-    @endforeach
-</ul>
+<div class="row">
+    <div class="col-sm-6">
+        <ul>
+            @foreach ($categorys as $category)
+            <li><a href="{{url('list/' . $category->id)}}">{{$category->name}}</a></li>
+            @endforeach
+        </ul>
+    </div>
+</div>
 @endsection
