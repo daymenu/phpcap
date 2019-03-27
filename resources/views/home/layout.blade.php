@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>笑傲江湖 - @yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     @stack('links')
     @stack('hscripts')
 </head>
@@ -15,13 +14,7 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                        <a class="navbar-brand" href="#">phpcap</a>
                     </div>
                 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,7 +68,6 @@
             @yield('content')
         </div>
     <script src="{{asset('js/bootstrap.js')}}"></script>
-    <script src="{{asset('js/app.js')}}"></script>
     @stack('scripts')
 </body>
 </html>
