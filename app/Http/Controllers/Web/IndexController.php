@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class IndexController extends CommonController
 {
     public function index(Request $request)
     {
-        $categorys = Category::get();
-        $view['categorys'] = $categorys;
+        $news = new Article();
+        $view['news'] = $news->news();
         return view('/home/index', $view);
     }
 }

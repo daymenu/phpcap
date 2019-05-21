@@ -46,7 +46,8 @@ const user = {
         getInfo(state.token).then(response => {
           const data = response.data
           commit('SET_NAME', data.email)
-          commit('SET_AVATAR', data.avatar)
+          const photo = data.avatar ? data.avatar : '/images/logo.png'
+          commit('SET_AVATAR', photo)
           resolve(response)
         }).catch(error => {
           reject(error)

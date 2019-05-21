@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Article;
 
-class DetailController extends Controller
+class DetailController extends CommonController
 {
     public function index(Request $request, $id)
     {
         $article = new Article();
-        $view['article'] = $article->detail($id);
+        $view['article'] = $article =  $article->detail($id);
+        if (!$article) {
+            redirect('/404');
+        }
+        $view['categoryId']  = $article->category_id;
         return view('/home/detail', $view);
     }
 }

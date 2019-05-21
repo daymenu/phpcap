@@ -1,6 +1,6 @@
 @extends('home.layout')
 
-@section('title', '列表')
+@section('title', '搜索')
 
 @push('links')
 <link rel="stylesheet" href="{{asset('css/index.css')}}">
@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-sm-12 col-lg-12 col-md-12">
         @empty($articles->total())
-        <div class="alert alert-danger" role="alert">该栏目还没有文章哦,小编正在快马加鞭!</div>
+        <div class="alert alert-danger" role="alert">您搜索的内容没有找到,请更换关键字!</div>
         @endempty
         <div class="list-group">
             @foreach ($articles as $article)

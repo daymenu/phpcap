@@ -13,10 +13,14 @@ class Article extends Model
     {
 
         $pageSize = max(1, $data['pageSize']);
+        $article = $this;
         if (isset($data['categoryId'])) {
-            $this->where('category_id', $data['categoryId']);
+           $article = $this->where('category_id', $data['categoryId']);
         }
-        $list = $this->where('status', 2)->paginate($pageSize);
+        if (isset($data['title'])) {
+           $article = $this->where('title','like', "%{$data['title']}%");
+        }
+        $list = $article->where('status', 2)->paginate(1);
         return $list;
     }
 
@@ -26,5 +30,18 @@ class Article extends Model
         $articleContent = ArticleContent::find($id);
         $article->content = $articleContent->content;
         return $article;
+    }
+
+    public function news()
+    {
+        $articles = $this->where('publishd_time', '<', time())
+        ->orderBy('id', 'desc')
+        ->limit(3)
+        ->get();
+        foreach ($articles as $k => $v) {
+            $articleContent = ArticleContent::find($v->id);
+            $articles[$k]->content = $articleContent->content;
+        }
+        return $articles;
     }
 }
