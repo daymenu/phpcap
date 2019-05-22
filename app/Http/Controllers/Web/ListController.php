@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 
 class ListController extends CommonController
 {
@@ -12,6 +13,8 @@ class ListController extends CommonController
         $article = new Article();
         $where['pageSize'] = 10;
         $view['categoryId'] = $where['categoryId'] = $cateId;
+        $cate = Category::select('name')->find($cateId);
+        $view['categoryName'] = isset($cate->name) ? $cate->name: '';
         $articleList = $article->publishList($where);
         $articleList->appends($request->input());
         $view['articles'] = $articleList;

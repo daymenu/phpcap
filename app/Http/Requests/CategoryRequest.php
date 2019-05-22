@@ -28,4 +28,11 @@ class CategoryRequest extends FormRequest
             'status' => 'required|between:1,2',
         ];
     }
+    
+    public function messages(){
+        return [
+            'name.required' => '类别名称不能为空',
+            'body.required'  => 'A message is required',
+        ];
+    }
 }

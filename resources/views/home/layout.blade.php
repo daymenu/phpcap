@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>笑傲江湖 - @yield('title')</title>
+    @stack('head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     @stack('links')
     @stack('hscripts')
 </head>
 <body>
-        <div class="container">
-            <nav class="navbar navbar-inverse navbar-collapse">
+    <div>
+        <nav class="navbar navbar-inverse navbar-collapse">
+            <div class="container">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -40,13 +41,16 @@
                     </form>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
-            </nav>
-            @yield('content')
-            <footer class="footer el-center">
-                <p>晋ICP备16002062号</p>
-                <p>笑傲江湖</p>
-            </footer>
-        </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        @yield('content')
+    </div>
+    <footer class="footer el-center">
+        <p>晋ICP备16002062号</p>
+        <p>笑傲江湖</p>
+    </footer>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     @stack('scripts')

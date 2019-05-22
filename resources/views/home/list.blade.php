@@ -1,6 +1,8 @@
 @extends('home.layout')
 
-@section('title', '列表')
+@push('head')
+<title>{{$categoryName}}_笑傲江湖</title>
+@endpush
 
 @push('links')
 <link rel="stylesheet" href="{{asset('css/index.css')}}">
@@ -24,6 +26,7 @@
             @foreach ($articles as $article)
             <a href="{{url('detail/' . $article->id)}}" class="list-group-item">
                 <h4 class="list-group-item-heading">{{$article->title}}</h4>
+                <p class="list-group-item-text">{{$article->title}}</p>
                 <p class="list-group-item-text">{{$article->title}}</p>
             </a>
             @endforeach

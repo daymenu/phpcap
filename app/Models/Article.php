@@ -20,7 +20,7 @@ class Article extends Model
         if (isset($data['title'])) {
            $article = $this->where('title','like', "%{$data['title']}%");
         }
-        $list = $article->where('status', 2)->paginate(1);
+        $list = $article->where('status', 2)->paginate($pageSize);
         return $list;
     }
 

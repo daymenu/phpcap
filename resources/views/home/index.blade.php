@@ -1,6 +1,8 @@
 @extends('home.layout')
 
-@section('title', '首页')
+@push('head')
+<title>首页_笑傲江湖</title>
+@endpush
 
 @push('links')
 <link rel="stylesheet" href="{{asset('css/index.css')}}">

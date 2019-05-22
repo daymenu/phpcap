@@ -9,11 +9,11 @@
 .el-center {
   text-align: center;
 }
-
 .footer {
   background-color: #333;
   padding-top: 20px;
   height: 100px;
+  width: 100%;
 }
 
 .footer p {
